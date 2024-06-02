@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    /* Responsive variant */
+    @media (min-width: 640px) {
+        .no-scrollbar {
+            -ms-overflow-style: auto;  /* IE and Edge */
+            scrollbar-width: auto;  /* Firefox */
+        }
+    }
+}
+
+/* Other styles */
+* {
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+textarea {
+  height: 200px;
+}
+
+button:focus {
+  outline: none;
+}
+
