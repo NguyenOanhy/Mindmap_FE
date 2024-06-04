@@ -20,15 +20,16 @@ const Questions = ({ isLoggedIn }) => {
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      let apiEndpoint = 'http://localhost:3001/api/quizzes';
+      let apiEndpoint = 'https://01ihcy5z6h.execute-api.us-east-1.amazonaws.com/dev/quizzes';
 
       if (selectedType === "true/false") {
         apiEndpoint = 'http://localhost:3001/api/quizzes_TF';
       }
 
       const response = await axios.post(apiEndpoint, { text: text });
-      setQuizzes(response.data);
-      setCurrentQuizzes(response.data);
+      const responseData = JSON.parse(response.data); 
+      setQuizzes(responseData);
+      setCurrentQuizzes(responseData);
       setIsLoading(false);
     } catch (error) {
       console.error(error);

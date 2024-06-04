@@ -20,7 +20,7 @@ const Chat = () => {
 
   const fetchData = async (text) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/chatbot', { text: text });
+      const response = await axios.post('https://01ihcy5z6h.execute-api.us-east-1.amazonaws.com/dev/chatbot', { text: text });
       setMessages((old) => [...old, { from: "computer", text: response.data }]);
     } catch (error) {
       console.log(error);

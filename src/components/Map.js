@@ -53,10 +53,10 @@ const Map = ({ isLoggedIn }) => {
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:3001/api/nodes', { text: text });
-      console.log(response.data); // In ra kết quả trả về từ server
-      setNodes(response.data);
-      setCurrentMap(response.data)
+      const response = await axios.post('https://01ihcy5z6h.execute-api.us-east-1.amazonaws.com/dev/nodes', { text: text });
+      const responseData = JSON.parse(response.data); // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
+      setNodes(responseData);
+      setCurrentMap(responseData);
       setIsLoading(false);
     } catch (error) {
       console.error(error);

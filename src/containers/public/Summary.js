@@ -17,7 +17,7 @@ function Summary() {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:3001/api/summarize', { text: text });
+      const response = await axios.post('https://01ihcy5z6h.execute-api.us-east-1.amazonaws.com/dev/summarize', { text: text });
       setSummary(response.data);
       console.log(summary)
 
