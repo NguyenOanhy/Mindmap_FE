@@ -11,7 +11,6 @@ const Questions = ({ isLoggedIn }) => {
   const [text, setText] = useState('');
   const [quizzes, setQuizzes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [currentQuizzes, setCurrentQuizzes] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -27,9 +26,8 @@ const Questions = ({ isLoggedIn }) => {
       }
 
       const response = await axios.post(apiEndpoint, { text: text });
-      const responseData = JSON.parse(response.data); 
-      setQuizzes(responseData);
-      setCurrentQuizzes(responseData);
+      setQuizzes(response.data);
+      setCurrentQuizzes(response.data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -124,7 +122,6 @@ const Questions = ({ isLoggedIn }) => {
          
         </div>
       </div>
-      {/* <h1 className='mt-10 text-center text-pink-500 font-bold text-[40px]'>Quiz</h1> */}
       {quizzes.length > 0 && (
         <div className='text-white mb-20 mx-20 rounded-lg px-20 py-10 shadow-xl flex bg-gradient-to-tr from-yellow-400 to-pink-500'>
           {showScore ? (
