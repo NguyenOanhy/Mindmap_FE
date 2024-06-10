@@ -21,13 +21,14 @@ const Questions = ({ isLoggedIn }) => {
     try {
       let apiEndpoint = 'https://01ihcy5z6h.execute-api.us-east-1.amazonaws.com/dev/quizzes';
 
-      if (selectedType === "true/false") {
-        apiEndpoint = 'http://localhost:3001/api/quizzes_TF';
-      }
+      // if (selectedType === "true/false") {
+      //   apiEndpoint = 'http://localhost:3001/api/quizzes_TF';
+      // }
 
       const response = await axios.post(apiEndpoint, { text: text });
-      setQuizzes(response.data);
-      setCurrentQuizzes(response.data);
+      const responseData = JSON.parse(response.data); 
+      setQuizzes(responseData);
+      setCurrentQuizzes(responseData);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -85,7 +86,7 @@ const Questions = ({ isLoggedIn }) => {
         <div className='flex flex-col m-20 gap-2'> 
           <textarea
             className='h-60 p-6 border rounded no-scrollbar'
-            placeholder='Paste your text here or upload a file...'
+            placeholder='Paste your text here...'
             value={text}
             onChange={handleTextChange}
           />
@@ -122,6 +123,7 @@ const Questions = ({ isLoggedIn }) => {
          
         </div>
       </div>
+      {/* <h1 className='mt-10 text-center text-pink-500 font-bold text-[40px]'>Quiz</h1> */}
       {quizzes.length > 0 && (
         <div className='text-white mb-20 mx-20 rounded-lg px-20 py-10 shadow-xl flex bg-gradient-to-tr from-yellow-400 to-pink-500'>
           {showScore ? (

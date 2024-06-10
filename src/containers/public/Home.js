@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import path from '../../utils/path';
+import { LeaderBoard } from '../../components';
 
 const Home = ({ isLoggedIn }) => {
   const navigate = useNavigate();

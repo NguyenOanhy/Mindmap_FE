@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
-import path from '../utils/path'
 import Modal from "react-modal";
 import Form from "./Form";
-import { addDataToFirestore } from "../firebase";
 import { Tree, Mind } from "tree-graph-react";
-import Swal from 'sweetalert2'
 import domtoimage from 'dom-to-image'
 
 const Map = ({ isLoggedIn }) => {
@@ -18,11 +15,9 @@ const Map = ({ isLoggedIn }) => {
   const [nodes, setNodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [text, setText] = useState("");
-  const [isUploading, setIsUploading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [currentMap, setCurrentMap] = useState("");
-  const navigate = useNavigate()
 
   const ref = useRef();
   const handleChange = (e) => {
@@ -61,25 +56,8 @@ const Map = ({ isLoggedIn }) => {
     } catch (error) {
       console.error(error);
       setIsLoading(false);
-      // if status code is 429 display error of 429
-      if (error.response.status === 429) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Too many requests from this IP, please try again later.',
-        });
-      }
-      else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong! Please try again.',
-        });
-      }
     }
   };
-
-  const fileInputRef = React.useRef(null);
 
   const handleSave = async () => {
     setIsSaving(true);
@@ -110,7 +88,7 @@ const Map = ({ isLoggedIn }) => {
       }
     };
     const nodesArray = Object.values(nodes);
-    const rootNode = nodesArray.find((node) => node._key === '001');
+    const rootNode = nodesArray.find((node) => node._key === "001");
 
     if (nodesArray.length > 0) {
       setNodeColors(rootNode);
@@ -123,7 +101,7 @@ const Map = ({ isLoggedIn }) => {
       <div className='flex flex-col m-20 gap-2'>
         <textarea
           className=" h-60 p-6 border rounded no-scrollbar"
-          placeholder="Paste your text here or upload a file..."
+          placeholder="Paste your text here..."
           value={text}
           onChange={handleTextChange}
         />
@@ -136,6 +114,7 @@ const Map = ({ isLoggedIn }) => {
             >
               {isLoading ? 'Loading...' : 'Mind Map'}
             </button>
+            {/* Thêm thẻ input type="file" ẩn đi, dùng để xử lý việc chọn file */}
             {isLoggedIn && (
               <button
                 className='px-4 py-2 w-32 bg-[#06325E] text-white rounded hover:bg-[#050828]'

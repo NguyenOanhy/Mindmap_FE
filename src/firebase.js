@@ -38,7 +38,6 @@ const getDocumentById = async (documentId, dbName) => {
     return null;
   }
 };
-
 //them data vao firebase
 const addDataToFirestore = async (m_name, m_data, m_tag, m_isPublic, dbName) => {
   const minValue = 10;
@@ -196,6 +195,25 @@ const getTotalScoreOfUser = async (uid) => {
 };
 
 
+const checkDoneQuiz = async (uid, quizId) => {
+  try {
+    const collectionRef = collection(db, "scoreOfQuizzes");
+    const querySnapshot = await getDocs(collectionRef);
+    let isDone = false;
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.uid === uid && data.quizId === quizId) {
+        isDone = true;
+      }
+    });
+    return isDone;
+  } catch (error) {
+    console.error("Error getting document: ", error);
+    return null;
+  }
+};
+
+// filter query
 
 const getDataFromFirestoreByFilters = async (name, isPublic, tag, uid, startTime, endTime, dbName) => {
   try {
@@ -278,6 +296,7 @@ const getCurrentUserEmail = () => {
   }
 };
 
+
 // get specific item with id
 const getDataFromFirestoreById = async (id, dbName) => {
   try {
@@ -337,4 +356,5 @@ const setLikeStatus = async (mID, isLike) => {
   }
 };
 
-export { auth, db, getDocumentById, addDataToFirestore, getCurrentUserEmail, getCurrentUser, getDataFromFirestoreByFilters, getLikenDislike, setLikeStatus, getDataFromFirestoreById, getRankingOfAllUsers, updateScoreAndTimestampOfScoreOfQuizzes };
+export { auth, db, getDocumentById, addDataToFirestore, getCurrentUserEmail, getCurrentUser, getDataFromFirestoreByFilters, getLikenDislike, setLikeStatus, getDataFromFirestoreById,
+ checkDoneQuiz, getRankingOfAllUsers, updateScoreAndTimestampOfScoreOfQuizzes };

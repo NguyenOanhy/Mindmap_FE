@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { db } from '../../firebase'
-import { collection, addDoc, getDocs, deleteDoc, updateDoc } from 'firebase/firestore';
 import Swal from 'sweetalert2';
 
 function Summary() {
   const [text, setText] = useState('');
   const [summary, setSummary] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
 
   const handleTextChange = (event) => {
     setText(event.target.value);
@@ -53,7 +50,7 @@ function Summary() {
         <div className="relative">
           <textarea
             className="w-full h-96 p-6 border rounded no-scrollbar"
-            placeholder="Paste your text here or upload a file..."
+            placeholder="Paste your text here..."
             value={text}
             onChange={handleTextChange}
           />
