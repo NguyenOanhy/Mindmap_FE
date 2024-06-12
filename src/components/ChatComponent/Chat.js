@@ -8,19 +8,12 @@ import Swal from 'sweetalert2';
 
 const Chat = () => {
   const [messages, setMessages] = useState([
-    { from: "computer", text: "Hi, my name is Claude" },
-    { from: "me", text: "Hey there" },
-    { from: "me", text: "My name is 4 PLUS 1" },
+    { from: "computer", text: "Chào bạn, tôi là Gemini AI" },
+    { from: "me", text: "Chào" },
     {
       from: "computer",
       text:
-        "Nice to meet you. You can send me message and i'll reply you some messages."
-    },
-    { from: "me", text: "Nice to meet you too" },
-    {
-      from: "computer",
-      text:
-        "What do you want to ask?"
+        "Tôi có thể giúp được gì cho bạn?"
     }
   ]);
   const [inputMessage, setInputMessage] = useState("");
