@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 const Chat = () => {
   const [messages, setMessages] = useState([
-    { from: "computer", text: "Chào bạn, tôi là Gemini AI" },
+    { from: "computer", text: "Tôi là Gemini, công cụ giúp bạn trực tiếp trải nghiệm AI của Google. Tôi được đào tạo về lượng lớn dữ liệu có sẵn công khai, ngoài ra có thể giao tiếp và tạo văn bản như con người để trả lời hàng loạt câu hỏi. Hãy thử khám phá tôi để xem tôi có thể làm gì cho bạn nhé!" },
     { from: "me", text: "Chào" },
     {
       from: "computer",
